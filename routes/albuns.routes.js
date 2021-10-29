@@ -70,6 +70,17 @@ router.put('/edit/:id',(req,res) =>{
     res.send(albuns);
 });
 
+router.put('/status/:id',(req,res) =>{
+    const idParam = req.params.id;
+    let index = albuns.findIndex(album => album.id == idParam);
+    if(albuns[index].assistido === false){
+        albuns[index].assistido = true
+    }else{
+        albuns[index].assistido = false
+    }
+    res.send(albuns);
+});
+
 router.delete('/delete/:id',(req,res) =>{
     const idParam = req.params.id;
     const index = albuns.findIndex(album => album.id == idParam);
@@ -79,3 +90,5 @@ router.delete('/delete/:id',(req,res) =>{
         message: `Album ${nome.titulo} excluido com sucesso !`,
     })
 });
+
+
