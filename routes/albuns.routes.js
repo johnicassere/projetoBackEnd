@@ -56,7 +56,9 @@ router.post('/add',(req,res) =>{
 const incluir = req.body;
 incluir.id = albuns[albuns.length -1].id + 1;
 albuns.push(incluir);
-res.send(albuns);
+res.send({
+albuns,
+message: `Album ${incluir.titulo} Cadastrado com sucesso !`,});
 });
 
 router.put('/edit/:id',(req,res) =>{
@@ -67,7 +69,10 @@ router.put('/edit/:id',(req,res) =>{
         ...albuns[index],
         ...novoAlbum
     }
-    res.send(albuns);
+    res.send({
+        albuns,
+        message:'Cavalo kkkkkkk'
+    })
 });
 
 router.put('/status/:id',(req,res) =>{
@@ -78,7 +83,8 @@ router.put('/status/:id',(req,res) =>{
     }else{
         albuns[index].assistido = false
     }
-    res.send(albuns);
+    res.send(albuns)
+        
 });
 
 router.delete('/delete/:id',(req,res) =>{
