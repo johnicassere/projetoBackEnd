@@ -58,7 +58,7 @@ incluir.id = albuns[albuns.length -1].id + 1;
 albuns.push(incluir);
 res.send({
 albuns,
-message: `Album ${incluir.titulo} Cadastrado com sucesso !`,});
+message: `Album ${incluir.titulo} Cadastrado com Sucesso !`,});
 });
 
 router.put('/edit/:id',(req,res) =>{
@@ -71,19 +71,20 @@ router.put('/edit/:id',(req,res) =>{
     }
     res.send({
         albuns,
-        message:'Cavalo kkkkkkk'
+        message:'Editado com Sucesso'
     })
 });
 
-router.put('/status/:id',(req,res) =>{
+router.put('/:status/:id',(req,res) =>{
     const idParam = req.params.id;
+    const okParams = req.params.status;
+    let okParamsBolean = (okParams == 'true'); 
     let index = albuns.findIndex(album => album.id == idParam);
-    if(albuns[index].assistido === false){
-        albuns[index].assistido = true
-    }else{
-        albuns[index].assistido = false
-    }
-    res.send(albuns)
+    albuns[index].assistido = okParamsBolean;
+    const statusEditado = albuns[index];    
+    res.send({
+        statusEditado
+    })
         
 });
 
